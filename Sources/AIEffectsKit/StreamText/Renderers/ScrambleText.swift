@@ -6,7 +6,6 @@
 //  Copyright © 2026 Chris Ng. All rights reserved.
 //
 
-import Combine
 import SwiftUI
 
 struct ScrambleText: View {
@@ -21,8 +20,10 @@ struct ScrambleText: View {
 
     var body: some View {
         Text(display)
-            .font(.system(.body, design: .monospaced))
-            .onReceive(tickTimer) { _ in tick() }
+            .monospaced()
+            .task {
+                await runTicker()
+            }
     }
 
     private var display: String {
@@ -39,18 +40,14 @@ struct ScrambleText: View {
         return locked + String(tail)
     }
 
-    private var tickTimer: Publishers.Autoconnect<Timer.TimerPublisher> {
-        Timer.publish(
-            every: seconds(advanceInterval),
-            on: .main,
-            in: .common
-        ).autoconnect()
-    }
-
-    private func tick() {
-        tailSeed &+= 1
-        if lockedCount < text.count, Double.random(in: 0..<1) < advanceProbability {
-            lockedCount += 1
+    private func runTicker() async {
+        while !Task.isCancelled {
+            try? await Task.sleep(for: advanceInterval)
+            if Task.isCancelled { break }
+            tailSeed &+= 1
+            if lockedCount < text.count, Double.random(in: 0..<1) < advanceProbability {
+                lockedCount += 1
+            }
         }
     }
 }

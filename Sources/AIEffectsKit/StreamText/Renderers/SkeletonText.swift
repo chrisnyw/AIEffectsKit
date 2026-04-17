@@ -34,15 +34,15 @@ struct SkeletonText: View {
         let phase = skeletonPhase(now: now)
 
         Text(word.text)
-            .foregroundStyle(isSettled ? Color.primary : .clear)
+            .opacity(isSettled ? 1 : 0)
             .padding(.horizontal, 1)
             .overlay {
-                if !isSettled {
-                    RoundedRectangle(cornerRadius: 4)
-                        .fill(skeletonGradient(phase: phase))
-                        .padding(.vertical, 2)
-                }
+                RoundedRectangle(cornerRadius: 4)
+                    .fill(skeletonGradient(phase: phase))
+                    .padding(.vertical, 2)
+                    .opacity(isSettled ? 0 : 1)
             }
+            .animation(.easeOut(duration: 0.2), value: isSettled)
     }
 
     private func skeletonPhase(now: Date) -> Double {

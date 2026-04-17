@@ -66,8 +66,7 @@ public struct ThinkingIndicator: View {
     }
 
     private func phaseValue(at date: Date) -> Double {
-        let periodSeconds = Double(period.components.seconds)
-            + Double(period.components.attoseconds) / 1e18
+        let periodSeconds = seconds(period)
         guard periodSeconds > 0 else { return 0 }
         let t = date.timeIntervalSinceReferenceDate / periodSeconds
         return t - floor(t)

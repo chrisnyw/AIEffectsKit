@@ -15,11 +15,11 @@ struct WordAnimatedText: View {
     @State private var words: [TimedWord] = []
 
     var body: some View {
+        let total = durationSeconds
         TimelineView(.animation) { context in
             FlowLayout {
                 ForEach(words) { word in
-                    let progress = progress(for: word, now: context.date)
-                    wordView(word: word, progress: progress)
+                    wordView(word: word, progress: progress(for: word, now: context.date, total: total))
                 }
             }
         }
@@ -28,10 +28,9 @@ struct WordAnimatedText: View {
         }
     }
 
-    private func progress(for word: TimedWord, now: Date) -> Double {
-        let elapsed = now.timeIntervalSince(word.arrivedAt)
-        let total = durationSeconds
+    private func progress(for word: TimedWord, now: Date, total: Double) -> Double {
         guard total > 0 else { return 1 }
+        let elapsed = now.timeIntervalSince(word.arrivedAt)
         return min(1, max(0, elapsed / total))
     }
 
@@ -59,23 +58,16 @@ struct WordAnimatedText: View {
     }
 
     private var durationSeconds: Double {
-        let duration: Duration
         switch style {
         case .wordReveal(_, let d), .fadeRise(_, let d), .blurFocus(_, let d):
-            duration = d
+            return seconds(d)
         default:
-            duration = .milliseconds(200)
+            return seconds(.milliseconds(200))
         }
-        return seconds(duration)
     }
 
     private func smoothstep(_ t: Double) -> Double {
         let x = min(1, max(0, t))
         return x * x * (3 - 2 * x)
     }
-}
-
-func seconds(_ duration: Duration) -> Double {
-    Double(duration.components.seconds)
-        + Double(duration.components.attoseconds) / 1e18
 }

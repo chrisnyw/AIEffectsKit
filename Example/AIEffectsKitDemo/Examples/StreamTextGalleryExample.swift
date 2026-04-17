@@ -16,20 +16,18 @@ struct StreamTextGalleryExample: View {
     private let sampleQuestion = "Explain recursion simply."
     private let sampleAnswer = "A function that calls itself until it hits a base case — like nested boxes where each one opens a smaller version of itself."
 
-    private var variants: [Variant] {
-        [
-            Variant(id: "type",    name: "Typewriter",      style: .typewriter()),
-            Variant(id: "words",   name: "Word reveal",     style: .wordReveal()),
-            Variant(id: "tokens",  name: "Token chunks",    style: .tokenChunks()),
-            Variant(id: "fade",    name: "Fade + rise",     style: .fadeRise()),
-            Variant(id: "blur",    name: "Blur to focus",   style: .blurFocus()),
-            Variant(id: "shimmer", name: "Shimmer wipe",    style: .shimmerWipe()),
-            Variant(id: "skel",    name: "Skeleton → text", style: .skeleton()),
-            Variant(id: "scram",   name: "Scramble",        style: .scramble()),
-            Variant(id: "drop",    name: "Letter drop",     style: .letterDrop()),
-            Variant(id: "line",    name: "Line cascade",    style: .lineCascade())
-        ]
-    }
+    private let variants: [Variant] = [
+        Variant(id: "type",    name: "Typewriter",      style: .typewriter()),
+        Variant(id: "words",   name: "Word reveal",     style: .wordReveal()),
+        Variant(id: "tokens",  name: "Token chunks",    style: .tokenChunks()),
+        Variant(id: "fade",    name: "Fade + rise",     style: .fadeRise()),
+        Variant(id: "blur",    name: "Blur to focus",   style: .blurFocus()),
+        Variant(id: "shimmer", name: "Shimmer wipe",    style: .shimmerWipe()),
+        Variant(id: "skel",    name: "Skeleton → text", style: .skeleton()),
+        Variant(id: "scram",   name: "Scramble",        style: .scramble()),
+        Variant(id: "drop",    name: "Letter drop",     style: .letterDrop()),
+        Variant(id: "line",    name: "Line cascade",    style: .lineCascade())
+    ]
 
     private var clampedIndex: Int {
         min(max(0, selectedIndex), variants.count - 1)
@@ -180,6 +178,7 @@ struct StreamTextGalleryExample: View {
             )
         }
         .buttonStyle(.plain)
+        .accessibilityLabel("Replay streaming sample")
     }
 
     private var sectionHeader: some View {
@@ -199,10 +198,10 @@ struct StreamTextGalleryExample: View {
 
     private var rowList: some View {
         VStack(spacing: 0) {
-            ForEach(variants.indices, id: \.self) { index in
+            ForEach(Array(variants.enumerated()), id: \.element.id) { index, variant in
                 VariantRow(
                     index: index,
-                    variant: variants[index],
+                    variant: variant,
                     isActive: index == clampedIndex,
                     onTap: {
                         selectedIndex = index
@@ -274,6 +273,10 @@ private struct VariantRow: View {
             .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(variant.name)
+        .accessibilityValue(isActive ? "Selected" : "")
+        .accessibilityHint("Activates this streaming style")
     }
 
     private var tickCircle: some View {

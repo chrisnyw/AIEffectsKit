@@ -52,7 +52,7 @@ struct IntelligenceGlowModifier: ViewModifier {
             EmptyView()
         } else if prefersStatic {
             RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
-                .strokeBorder(colors.first ?? .accentColor, lineWidth: lineWidth)
+                .strokeBorder(colors.first ?? Color.primary, lineWidth: lineWidth)
                 .opacity(0.6)
         } else {
             TimelineView(.animation) { context in
