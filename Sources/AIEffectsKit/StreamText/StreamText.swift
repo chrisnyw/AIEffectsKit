@@ -20,9 +20,9 @@ public struct StreamText<Source: AsyncSequence & Sendable>: View where Source.El
 
     public init(
         _ source: Source,
-        shimmerWindow: Int = 12,
-        shimmerStrength: Double = 0.6,
-        shimmerPeriod: Duration = .milliseconds(900)
+        shimmerWindow: Int = 10,
+        shimmerStrength: Double = 0.5,
+        shimmerPeriod: Duration = .milliseconds(1200)
     ) {
         self.source = source
         self.shimmerWindow = shimmerWindow

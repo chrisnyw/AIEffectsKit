@@ -27,6 +27,7 @@ struct StreamTextTypingExample: View {
 
                 Button("Replay") { runToken += 1 }
                     .buttonStyle(.borderedProminent)
+                    .frame(maxWidth: .infinity)
                     .padding(.horizontal)
             }
             .padding(.vertical)

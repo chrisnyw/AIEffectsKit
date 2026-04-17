@@ -12,9 +12,9 @@ public extension StreamText where Source == AsyncStream<String> {
     static func typing(
         _ text: String,
         interval: Duration = .milliseconds(40),
-        shimmerWindow: Int = 12,
-        shimmerStrength: Double = 0.6,
-        shimmerPeriod: Duration = .milliseconds(900)
+        shimmerWindow: Int = 10,
+        shimmerStrength: Double = 0.5,
+        shimmerPeriod: Duration = .milliseconds(1200)
     ) -> StreamText {
         StreamText(
             typingStream(text: text, interval: interval),

@@ -32,13 +32,20 @@ struct StreamingTextRenderer: TextRenderer {
             var copy = context
             let distanceFromEnd = total - 1 - index
             if distanceFromEnd < window {
-                let normalized = Double(distanceFromEnd) / Double(window)
-                let wave = sin((phase - normalized) * .pi * 2)
+                let t = Double(distanceFromEnd) / Double(window)
+                let fadeIn = 0.35 + 0.65 * smoothstep(t)
+                let wave = sin((phase - t) * .pi * 2)
                 let pulse = 0.5 + 0.5 * wave
-                let floor = 1 - shimmerStrength
-                copy.opacity = floor + shimmerStrength * pulse
+                let settled = fadeIn * (1 - shimmerStrength)
+                let shimmer = shimmerStrength * (1 - t) * pulse
+                copy.opacity = min(1, max(0, settled + shimmer))
             }
             copy.draw(slice)
         }
+    }
+
+    private func smoothstep(_ t: Double) -> Double {
+        let x = min(1, max(0, t))
+        return x * x * (3 - 2 * x)
     }
 }
