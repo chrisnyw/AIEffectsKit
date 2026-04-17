@@ -43,7 +43,7 @@ Effects auto-degrade when any of these is true:
 
 ## Demo
 
-See `Demo/` — a local Xcode project that shows each component. (Added in a later phase.)
+See `Example/AIEffectsKitDemo/` — a local Xcode project that shows each component. (Added in a later phase.)
 
 ## License
 
