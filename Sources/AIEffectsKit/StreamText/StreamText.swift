@@ -15,6 +15,7 @@ public struct StreamText<Source: AsyncSequence & Sendable>: View where Source.El
     private let shimmerPeriod: Duration
 
     @State private var accumulated: String = ""
+    @Environment(\.aiState) private var aiState
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(\.accessibilityReduceTransparency) private var reduceTransparency
 
@@ -33,7 +34,7 @@ public struct StreamText<Source: AsyncSequence & Sendable>: View where Source.El
     public var body: some View {
         content
             .task {
-                await consume()
+                await consume(reporting: aiState)
             }
     }
 
@@ -81,13 +82,15 @@ public struct StreamText<Source: AsyncSequence & Sendable>: View where Source.El
         return t - floor(t)
     }
 
-    private func consume() async {
+    private func consume(reporting state: AIState?) async {
+        state?.phase = .streaming
         do {
             for try await token in source {
                 accumulated.append(token)
             }
+            state?.phase = .done
         } catch {
-            // Prototype: surface errors through AIState in a later phase.
+            state?.phase = .error(String(describing: error))
         }
     }
 }

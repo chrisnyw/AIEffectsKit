@@ -14,6 +14,9 @@
 		A10000000000000000000032 /* ExampleLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000022 /* ExampleLink.swift */; };
 		A10000000000000000000033 /* StreamTextTypingExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000023 /* StreamTextTypingExample.swift */; };
 		A10000000000000000000034 /* StreamTextAsyncExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000024 /* StreamTextAsyncExample.swift */; };
+		A10000000000000000000035 /* ThinkingIndicatorExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000025 /* ThinkingIndicatorExample.swift */; };
+		A10000000000000000000036 /* IntelligenceGlowExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000028 /* IntelligenceGlowExample.swift */; };
+		A10000000000000000000037 /* OrchestratedExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000029 /* OrchestratedExample.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		A10000000000000000000022 /* ExampleLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleLink.swift; sourceTree = "<group>"; };
 		A10000000000000000000023 /* StreamTextTypingExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamTextTypingExample.swift; sourceTree = "<group>"; };
 		A10000000000000000000024 /* StreamTextAsyncExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamTextAsyncExample.swift; sourceTree = "<group>"; };
+		A10000000000000000000025 /* ThinkingIndicatorExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThinkingIndicatorExample.swift; sourceTree = "<group>"; };
+		A10000000000000000000028 /* IntelligenceGlowExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntelligenceGlowExample.swift; sourceTree = "<group>"; };
+		A10000000000000000000029 /* OrchestratedExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrchestratedExample.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +85,9 @@
 			children = (
 				A10000000000000000000023 /* StreamTextTypingExample.swift */,
 				A10000000000000000000024 /* StreamTextAsyncExample.swift */,
+				A10000000000000000000025 /* ThinkingIndicatorExample.swift */,
+				A10000000000000000000028 /* IntelligenceGlowExample.swift */,
+				A10000000000000000000029 /* OrchestratedExample.swift */,
 			);
 			path = Examples;
 			sourceTree = "<group>";
@@ -163,6 +172,9 @@
 				A10000000000000000000032 /* ExampleLink.swift in Sources */,
 				A10000000000000000000033 /* StreamTextTypingExample.swift in Sources */,
 				A10000000000000000000034 /* StreamTextAsyncExample.swift in Sources */,
+				A10000000000000000000035 /* ThinkingIndicatorExample.swift in Sources */,
+				A10000000000000000000036 /* IntelligenceGlowExample.swift in Sources */,
+				A10000000000000000000037 /* OrchestratedExample.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
