@@ -18,3 +18,4 @@ DerivedData/
 # Docs build
 docs/
 *.doccarchive
+build

@@ -10,9 +10,7 @@ import SwiftUI
 
 public struct StreamText<Source: AsyncSequence & Sendable>: View where Source.Element == String {
     private let source: Source
-    private let shimmerWindow: Int
-    private let shimmerStrength: Double
-    private let shimmerPeriod: Duration
+    private let style: StreamTextStyle
 
     @State private var accumulated: String = ""
     @Environment(\.aiState) private var aiState
@@ -21,14 +19,10 @@ public struct StreamText<Source: AsyncSequence & Sendable>: View where Source.El
 
     public init(
         _ source: Source,
-        shimmerWindow: Int = 10,
-        shimmerStrength: Double = 0.5,
-        shimmerPeriod: Duration = .milliseconds(1200)
+        style: StreamTextStyle = .trailingShimmer()
     ) {
         self.source = source
-        self.shimmerWindow = shimmerWindow
-        self.shimmerStrength = shimmerStrength
-        self.shimmerPeriod = shimmerPeriod
+        self.style = style
     }
 
     public var body: some View {
@@ -41,31 +35,48 @@ public struct StreamText<Source: AsyncSequence & Sendable>: View where Source.El
     @ViewBuilder private var content: some View {
         if prefersStatic {
             Text(accumulated)
-        } else if #available(iOS 18.0, macOS 15.0, watchOS 11.0, visionOS 2.0, tvOS 18.0, *) {
-            modernContent
         } else {
-            fallbackContent
+            switch style {
+            case .trailingShimmer(let window, let strength, let period):
+                shimmerContent(window: window, strength: strength, period: period)
+            case .typewriter(let caret):
+                TypewriterView(text: accumulated, showCaret: caret)
+            case .wordReveal, .fadeRise, .blurFocus:
+                WordAnimatedText(text: accumulated, style: style)
+            case .tokenChunks(_, let duration):
+                TokenChunkText(text: accumulated, duration: duration)
+            case .shimmerWipe(_, let duration):
+                ShimmerWipeText(text: accumulated, duration: duration)
+            case .skeleton(_, let settleDuration):
+                SkeletonText(text: accumulated, settleDuration: settleDuration)
+            case .scramble(let interval, let probability):
+                ScrambleText(text: accumulated, advanceInterval: interval, advanceProbability: probability)
+            case .letterDrop(_, let duration):
+                LetterDropText(text: accumulated, duration: duration)
+            case .lineCascade(_, let duration):
+                LineCascadeText(text: accumulated, duration: duration)
+            }
         }
     }
 
-    @available(iOS 18.0, macOS 15.0, watchOS 11.0, visionOS 2.0, tvOS 18.0, *)
-    private var modernContent: some View {
-        TimelineView(.animation) { context in
-            let phase = phaseValue(at: context.date)
-            Text(accumulated)
-                .textRenderer(
-                    StreamingTextRenderer(
-                        phase: phase,
-                        shimmerWindow: shimmerWindow,
-                        shimmerStrength: shimmerStrength
+    @ViewBuilder
+    private func shimmerContent(window: Int, strength: Double, period: Duration) -> some View {
+        if #available(iOS 18.0, macOS 15.0, watchOS 11.0, visionOS 2.0, tvOS 18.0, *) {
+            TimelineView(.animation) { context in
+                let phase = phaseValue(at: context.date, period: period)
+                Text(accumulated)
+                    .textRenderer(
+                        StreamingTextRenderer(
+                            phase: phase,
+                            shimmerWindow: window,
+                            shimmerStrength: strength
+                        )
                     )
-                )
+            }
+        } else {
+            Text(accumulated)
+                .animation(.easeOut(duration: 0.2), value: accumulated)
         }
-    }
-
-    private var fallbackContent: some View {
-        Text(accumulated)
-            .animation(.easeOut(duration: 0.2), value: accumulated)
     }
 
     private var prefersStatic: Bool {
@@ -74,11 +85,10 @@ public struct StreamText<Source: AsyncSequence & Sendable>: View where Source.El
             || ProcessInfo.processInfo.isLowPowerModeEnabled
     }
 
-    private func phaseValue(at date: Date) -> Double {
-        let periodSeconds = Double(shimmerPeriod.components.seconds)
-            + Double(shimmerPeriod.components.attoseconds) / 1e18
-        guard periodSeconds > 0 else { return 0 }
-        let t = date.timeIntervalSinceReferenceDate / periodSeconds
+    private func phaseValue(at date: Date, period: Duration) -> Double {
+        let s = seconds(period)
+        guard s > 0 else { return 0 }
+        let t = date.timeIntervalSinceReferenceDate / s
         return t - floor(t)
     }
 

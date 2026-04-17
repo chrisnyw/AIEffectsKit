@@ -14,21 +14,15 @@ struct ContentView: View {
             List {
                 Section {
                     ExampleLink(
-                        title: "Typing reveal",
-                        summary: "A canned paragraph revealed one character at a time using StreamText.typing()."
+                        title: "Streaming styles",
+                        summary: "Picker for 10 reveal styles — typewriter, word reveal, token chunks, fade + rise, blur to focus, shimmer wipe, skeleton → text, scramble, letter drop, line cascade."
                     ) {
-                        StreamTextTypingExample()
-                    }
-                    ExampleLink(
-                        title: "Async token stream",
-                        summary: "Simulates an LLM that yields variable-size chunks via a raw AsyncStream."
-                    ) {
-                        StreamTextAsyncExample()
+                        StreamTextGalleryExample()
                     }
                 } header: {
                     Text("StreamText")
                 } footer: {
-                    Text("Trailing-edge shimmer driven by TimelineView + TextRenderer on iOS 18+. Falls back to a plain fade on iOS 17.")
+                    Text("Tap a style to preview it looping. Selection persists via @AppStorage.")
                 }
 
                 Section {

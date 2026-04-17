@@ -12,15 +12,11 @@ public extension StreamText where Source == AsyncStream<String> {
     static func typing(
         _ text: String,
         interval: Duration = .milliseconds(40),
-        shimmerWindow: Int = 10,
-        shimmerStrength: Double = 0.5,
-        shimmerPeriod: Duration = .milliseconds(1200)
+        style: StreamTextStyle = .trailingShimmer()
     ) -> StreamText {
         StreamText(
             typingStream(text: text, interval: interval),
-            shimmerWindow: shimmerWindow,
-            shimmerStrength: shimmerStrength,
-            shimmerPeriod: shimmerPeriod
+            style: style
         )
     }
 }
