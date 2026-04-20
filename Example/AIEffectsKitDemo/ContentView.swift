@@ -27,12 +27,6 @@ struct ContentView: View {
 
                 Section {
                     ExampleLink(
-                        title: "ThinkingIndicator",
-                        summary: "Three pulsing dots that appear only while AIState.phase == .thinking. Toggle phases to see when it renders."
-                    ) {
-                        ThinkingIndicatorExample()
-                    }
-                    ExampleLink(
                         title: "IntelligenceGlow",
                         summary: "Animated gradient border. Activate/deactivate manually or wire to an AIState."
                     ) {
@@ -50,6 +44,12 @@ struct ContentView: View {
                         summary: "All three components driven by one shared AIState. Thinks, glows, streams, settles."
                     ) {
                         OrchestratedExample()
+                    }
+                    ExampleLink(
+                        title: "AI states",
+                        summary: "Picker for five indicator styles — orb, aurora ring, waveform, prism, status chip — cycling through all six phases."
+                    ) {
+                        AIStatesExample()
                     }
                 } header: {
                     Text("AIState orchestration")

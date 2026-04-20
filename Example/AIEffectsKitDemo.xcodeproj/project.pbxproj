@@ -12,10 +12,19 @@
 		A10000000000000000000030 /* AIEffectsKitDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000020 /* AIEffectsKitDemoApp.swift */; };
 		A10000000000000000000031 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000021 /* ContentView.swift */; };
 		A10000000000000000000032 /* ExampleLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000022 /* ExampleLink.swift */; };
-		A10000000000000000000035 /* ThinkingIndicatorExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000025 /* ThinkingIndicatorExample.swift */; };
 		A10000000000000000000036 /* IntelligenceGlowExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000028 /* IntelligenceGlowExample.swift */; };
 		A10000000000000000000037 /* OrchestratedExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000029 /* OrchestratedExample.swift */; };
 		A10000000000000000000038 /* StreamTextGalleryExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000000000000000000002A /* StreamTextGalleryExample.swift */; };
+		A10000000000000000000033 /* AIStatesExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000023 /* AIStatesExample.swift */; };
+		A10000000000000000000039 /* OrbIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000000000000000000002B /* OrbIndicator.swift */; };
+		A1000000000000000000003A /* AuroraRingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000000000000000000002C /* AuroraRingIndicator.swift */; };
+		A1000000000000000000003B /* WaveformIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000000000000000000002D /* WaveformIndicator.swift */; };
+		A1000000000000000000003C /* PrismIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000000000000000000002E /* PrismIndicator.swift */; };
+		A1000000000000000000003D /* StatusChipIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000000000000000000002F /* StatusChipIndicator.swift */; };
+		A10000000000000000000034 /* AIStatePhase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000024 /* AIStatePhase.swift */; };
+		A10000000000000000000044 /* IndicatorStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000043 /* IndicatorStyle.swift */; };
+		A10000000000000000000046 /* IndicatorThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000045 /* IndicatorThumbnail.swift */; };
+		A10000000000000000000048 /* PhaseRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000047 /* PhaseRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,10 +33,19 @@
 		A10000000000000000000020 /* AIEffectsKitDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIEffectsKitDemoApp.swift; sourceTree = "<group>"; };
 		A10000000000000000000021 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A10000000000000000000022 /* ExampleLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleLink.swift; sourceTree = "<group>"; };
-		A10000000000000000000025 /* ThinkingIndicatorExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThinkingIndicatorExample.swift; sourceTree = "<group>"; };
 		A10000000000000000000028 /* IntelligenceGlowExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntelligenceGlowExample.swift; sourceTree = "<group>"; };
 		A10000000000000000000029 /* OrchestratedExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrchestratedExample.swift; sourceTree = "<group>"; };
 		A1000000000000000000002A /* StreamTextGalleryExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamTextGalleryExample.swift; sourceTree = "<group>"; };
+		A10000000000000000000023 /* AIStatesExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIStatesExample.swift; sourceTree = "<group>"; };
+		A1000000000000000000002B /* OrbIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrbIndicator.swift; sourceTree = "<group>"; };
+		A1000000000000000000002C /* AuroraRingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraRingIndicator.swift; sourceTree = "<group>"; };
+		A1000000000000000000002D /* WaveformIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveformIndicator.swift; sourceTree = "<group>"; };
+		A1000000000000000000002E /* PrismIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrismIndicator.swift; sourceTree = "<group>"; };
+		A1000000000000000000002F /* StatusChipIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusChipIndicator.swift; sourceTree = "<group>"; };
+		A10000000000000000000024 /* AIStatePhase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIStatePhase.swift; sourceTree = "<group>"; };
+		A10000000000000000000043 /* IndicatorStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorStyle.swift; sourceTree = "<group>"; };
+		A10000000000000000000045 /* IndicatorThumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorThumbnail.swift; sourceTree = "<group>"; };
+		A10000000000000000000047 /* PhaseRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhaseRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,12 +99,37 @@
 		A10000000000000000000041 /* Examples */ = {
 			isa = PBXGroup;
 			children = (
-				A10000000000000000000025 /* ThinkingIndicatorExample.swift */,
 				A10000000000000000000028 /* IntelligenceGlowExample.swift */,
 				A10000000000000000000029 /* OrchestratedExample.swift */,
 				A1000000000000000000002A /* StreamTextGalleryExample.swift */,
+				A10000000000000000000023 /* AIStatesExample.swift */,
+				A10000000000000000000049 /* AIStates */,
+				A10000000000000000000042 /* Indicators */,
 			);
 			path = Examples;
+			sourceTree = "<group>";
+		};
+		A10000000000000000000049 /* AIStates */ = {
+			isa = PBXGroup;
+			children = (
+				A10000000000000000000024 /* AIStatePhase.swift */,
+				A10000000000000000000043 /* IndicatorStyle.swift */,
+				A10000000000000000000045 /* IndicatorThumbnail.swift */,
+				A10000000000000000000047 /* PhaseRow.swift */,
+			);
+			path = AIStates;
+			sourceTree = "<group>";
+		};
+		A10000000000000000000042 /* Indicators */ = {
+			isa = PBXGroup;
+			children = (
+				A1000000000000000000002B /* OrbIndicator.swift */,
+				A1000000000000000000002C /* AuroraRingIndicator.swift */,
+				A1000000000000000000002D /* WaveformIndicator.swift */,
+				A1000000000000000000002E /* PrismIndicator.swift */,
+				A1000000000000000000002F /* StatusChipIndicator.swift */,
+			);
+			path = Indicators;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -167,10 +210,19 @@
 				A10000000000000000000030 /* AIEffectsKitDemoApp.swift in Sources */,
 				A10000000000000000000031 /* ContentView.swift in Sources */,
 				A10000000000000000000032 /* ExampleLink.swift in Sources */,
-				A10000000000000000000035 /* ThinkingIndicatorExample.swift in Sources */,
 				A10000000000000000000036 /* IntelligenceGlowExample.swift in Sources */,
 				A10000000000000000000037 /* OrchestratedExample.swift in Sources */,
 				A10000000000000000000038 /* StreamTextGalleryExample.swift in Sources */,
+				A10000000000000000000033 /* AIStatesExample.swift in Sources */,
+				A10000000000000000000039 /* OrbIndicator.swift in Sources */,
+				A1000000000000000000003A /* AuroraRingIndicator.swift in Sources */,
+				A1000000000000000000003B /* WaveformIndicator.swift in Sources */,
+				A1000000000000000000003C /* PrismIndicator.swift in Sources */,
+				A1000000000000000000003D /* StatusChipIndicator.swift in Sources */,
+				A10000000000000000000034 /* AIStatePhase.swift in Sources */,
+				A10000000000000000000044 /* IndicatorStyle.swift in Sources */,
+				A10000000000000000000046 /* IndicatorThumbnail.swift in Sources */,
+				A10000000000000000000048 /* PhaseRow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
