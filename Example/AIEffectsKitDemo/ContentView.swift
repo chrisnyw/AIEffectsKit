@@ -12,52 +12,52 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             List {
-                Section {
-                    ExampleLink(
-                        title: "Streaming styles",
-                        summary: "Picker for 10 reveal styles — typewriter, word reveal, token chunks, fade + rise, blur to focus, shimmer wipe, skeleton → text, scramble, letter drop, line cascade."
-                    ) {
-                        StreamTextGalleryExample()
-                    }
-                } header: {
-                    Text("StreamText")
-                } footer: {
-                    Text("Tap a style to preview it looping. Selection persists via @AppStorage.")
-                }
-
-                Section {
-                    ExampleLink(
-                        title: "IntelligenceGlow",
-                        summary: "Animated gradient border. Activate/deactivate manually or wire to an AIState."
-                    ) {
-                        IntelligenceGlowExample()
-                    }
-                } header: {
-                    Text("Phase 2 components")
-                } footer: {
-                    Text("Pure-SwiftUI implementations. Metal layerEffect upgrade is planned for IntelligenceGlow.")
-                }
-
-                Section {
-                    ExampleLink(
-                        title: "Orchestrated",
-                        summary: "All three components driven by one shared AIState. Thinks, glows, streams, settles."
-                    ) {
-                        OrchestratedExample()
-                    }
-                    ExampleLink(
-                        title: "AI states",
-                        summary: "Picker for five indicator styles — orb, aurora ring, waveform, prism, status chip — cycling through all six phases."
-                    ) {
-                        AIStatesExample()
-                    }
-                } header: {
-                    Text("AIState orchestration")
-                } footer: {
-                    Text("The pitch: one state publisher, coherent visual language.")
-                }
+                componentsSection
+                integrationSection
             }
             .navigationTitle("AIEffectsKit")
+        }
+    }
+
+    private var componentsSection: some View {
+        Section {
+            ExampleLink(
+                title: "IntelligenceGlow",
+                summary: "Animated gradient border modifier. Tweak palette, line width, corner radius, and activation."
+            ) {
+                IntelligenceGlowExample()
+            }
+            ExampleLink(
+                title: "Streaming styles",
+                summary: "Ten StreamText reveal styles in one looping picker — typewriter, word reveal, shimmer wipe, and more."
+            ) {
+                StreamTextGalleryExample()
+            }
+            ExampleLink(
+                title: "AI states",
+                summary: "Five indicator styles — orb, aurora ring, waveform, prism, status chip — cycling through all six phases."
+            ) {
+                AIStatesExample()
+            }
+        } header: {
+            Text("Components")
+        } footer: {
+            Text("Each effect on its own — catalogs and tuning surfaces.")
+        }
+    }
+
+    private var integrationSection: some View {
+        Section {
+            ExampleLink(
+                title: "AI response",
+                summary: "StreamText inside an IntelligenceGlow card, with a picked indicator animating idle → listening → thinking → streaming → done."
+            ) {
+                AIResponseExample()
+            }
+        } header: {
+            Text("Integration")
+        } footer: {
+            Text("One AIState driving the indicator, the glow border, and the streaming text together.")
         }
     }
 }

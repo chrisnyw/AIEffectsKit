@@ -9,20 +9,7 @@
 import SwiftUI
 
 struct AIStatesExample: View {
-    @AppStorage("ai-states-phase") private var phaseRaw: String = AIStatePhase.idle.rawValue
-    @AppStorage("ai-states-indicator") private var indicatorRaw: String = IndicatorStyle.orb.rawValue
-    @State private var replayToken: Int = 0
-
-    private var phase: AIStatePhase {
-        AIStatePhase(rawValue: phaseRaw) ?? .idle
-    }
-    private var indicator: IndicatorStyle {
-        IndicatorStyle(rawValue: indicatorRaw) ?? .orb
-    }
-
-    private var phaseIndex: Int {
-        AIStatePhase.allCases.firstIndex(of: phase) ?? 0
-    }
+    @State private var model = AIStatesViewModel()
 
     var body: some View {
         ScrollView {
@@ -54,7 +41,7 @@ struct AIStatesExample: View {
                     .kerning(-0.3)
             }
             Spacer()
-            Text("\(phaseIndex + 1)/\(AIStatePhase.allCases.count)")
+            Text("\(model.phaseIndex + 1)/\(AIStatePhase.allCases.count)")
                 .font(.system(size: 11, weight: .regular, design: .monospaced))
                 .foregroundStyle(.secondary)
                 .padding(.bottom, 4)
@@ -74,15 +61,15 @@ struct AIStatesExample: View {
             segmentedControl
 
             HStack(spacing: 6) {
-                Text(indicator.numericLabel)
+                Text(model.indicator.numericLabel)
                     .font(.system(size: 10, weight: .medium, design: .monospaced))
                     .foregroundStyle(.secondary)
-                Text(indicator.displayName)
+                Text(model.indicator.displayName)
                     .font(.system(size: 13, weight: .medium))
                     .foregroundStyle(.primary)
                 Text("·")
                     .foregroundStyle(.secondary)
-                Text(indicator.tagline)
+                Text(model.indicator.tagline)
                     .font(.system(size: 12))
                     .foregroundStyle(.secondary)
             }
@@ -104,10 +91,9 @@ struct AIStatesExample: View {
     private var segmentedControl: some View {
         HStack(spacing: 4) {
             ForEach(IndicatorStyle.allCases) { style in
-                let isSelected = style == indicator
+                let isSelected = style == model.indicator
                 Button {
-                    indicatorRaw = style.rawValue
-                    replayToken += 1
+                    model.select(indicator: style)
                 } label: {
                     IndicatorThumbnail(style: style, isSelected: isSelected)
                         .frame(maxWidth: .infinity)
@@ -144,7 +130,7 @@ struct AIStatesExample: View {
                 stateCopy
 
                 HStack {
-                    Text("\(String(format: "%02d", phaseIndex + 1)) · \(phase.title)")
+                    Text("\(String(format: "%02d", model.phaseIndex + 1)) · \(model.phase.title)")
                         .font(.system(size: 10, weight: .regular, design: .monospaced))
                         .kerning(0.6)
                         .foregroundStyle(.secondary)
@@ -178,30 +164,30 @@ struct AIStatesExample: View {
 
     private var demoArea: some View {
         Group {
-            switch indicator {
+            switch model.indicator {
             case .orb:
-                OrbIndicator(phase: phase)
+                OrbIndicator(phase: model.phase)
             case .aurora:
-                AuroraRingIndicator(phase: phase, message: phase.auroraMessage)
+                AuroraRingIndicator(phase: model.phase, message: model.phase.auroraMessage)
             case .waveform:
-                WaveformIndicator(phase: phase)
+                WaveformIndicator(phase: model.phase)
             case .prism:
-                PrismIndicator(phase: phase)
+                PrismIndicator(phase: model.phase)
             case .chip:
-                StatusChipIndicator(phase: phase)
+                StatusChipIndicator(phase: model.phase)
             }
         }
         .frame(maxWidth: .infinity, minHeight: 160)
-        .id(replayToken)
+        .id(model.replayToken)
     }
 
     private var stateCopy: some View {
         VStack(spacing: 4) {
-            Text(phase.primaryCopy)
+            Text(model.phase.primaryCopy)
                 .font(.system(size: 15, weight: .medium))
                 .kerning(-0.15)
                 .foregroundStyle(.primary)
-            Text(phase.secondaryCopy.uppercased())
+            Text(model.phase.secondaryCopy.uppercased())
                 .font(.system(size: 10.5, weight: .regular, design: .monospaced))
                 .kerning(0.6)
                 .foregroundStyle(secondaryCopyColor)
@@ -212,7 +198,7 @@ struct AIStatesExample: View {
 
     private var replayButton: some View {
         Button {
-            replayToken += 1
+            model.replay()
         } label: {
             HStack(spacing: 4) {
                 Image(systemName: "arrow.counterclockwise")
@@ -252,10 +238,9 @@ struct AIStatesExample: View {
                 PhaseRow(
                     index: index,
                     candidate: candidate,
-                    isActive: candidate == phase,
+                    isActive: candidate == model.phase,
                     onTap: {
-                        phaseRaw = candidate.rawValue
-                        replayToken += 1
+                        model.select(phase: candidate)
                     }
                 )
                 if index < AIStatePhase.allCases.count - 1 {
@@ -274,7 +259,7 @@ struct AIStatesExample: View {
     }
 
     private var tagDotColor: Color {
-        switch phase {
+        switch model.phase {
         case .done: return Color(.aiStateSuccess)
         case .error: return Color(.aiStateError)
         default: return .primary
@@ -282,7 +267,7 @@ struct AIStatesExample: View {
     }
 
     private var secondaryCopyColor: Color {
-        switch phase {
+        switch model.phase {
         case .done: return Color(.aiStateSuccessDeep)
         case .error: return Color(.aiStateErrorDeep)
         default: return .secondary
