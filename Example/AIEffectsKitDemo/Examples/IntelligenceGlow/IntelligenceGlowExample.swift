@@ -67,13 +67,29 @@ struct IntelligenceGlowExample: View {
                     .kerning(0.8)
                     .foregroundStyle(.secondary)
                 Spacer()
-                Picker("Palette", selection: $model.palette) {
-                    ForEach(GlowPalette.allCases) { option in
-                        Text(option.displayName).tag(option)
+                Picker("Palette", selection: $model.paletteKind) {
+                    ForEach(GlowPalette.Kind.allCases) { kind in
+                        Text(kind.displayName).tag(kind)
                     }
                 }
                 .pickerStyle(.menu)
                 .tint(.primary)
+            }
+
+            if model.palette.kind == .custom {
+                HStack {
+                    Text("COLOR")
+                        .font(.system(size: 10, weight: .regular, design: .monospaced))
+                        .kerning(0.8)
+                        .foregroundStyle(.secondary)
+                    Spacer()
+                    ColorPicker(
+                        "Custom glow color",
+                        selection: $model.customColor,
+                        supportsOpacity: false
+                    )
+                    .labelsHidden()
+                }
             }
 
             Divider()
