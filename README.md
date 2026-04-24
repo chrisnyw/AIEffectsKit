@@ -2,6 +2,8 @@
 
 **The visual language of generative AI for SwiftUI** — state-driven, accessibility-correct, ready for Metal acceleration.
 
+<p align="center"><img src="Assets/intergrated-orb.gif" alt="Integrated hero — demonstrate orb indicator" width="250"> <img src="Assets/intergrated-chip.gif" alt="Integrated hero — demonstrate status chip indicator" width="250"></p>
+
 > Ships `StreamText`, `ThinkingIndicator`, `IntelligenceGlow`, and a shared `AIState` that ties them together. `StreamText` offers **ten** reveal styles, powered by the iOS 18 `TextRenderer` API with iOS 17 fallbacks. Every effect auto-degrades under Reduce Motion / Reduce Transparency / Low Power Mode.
 
 ## Why
@@ -33,6 +35,12 @@ import AIEffectsKit
 
 ## Quick start — `StreamText`
 
+<p align="center">
+  <img src="Assets/streamtext-typewriter.gif" alt="StreamText — typewriter style" width="180">
+  <img src="Assets/streamtext-shimmer-wipe.gif" alt="StreamText — shimmer wipe style" width="180">
+  <img src="Assets/streamtext-fade-rise.gif" alt="StreamText — fade + rise style" width="180">
+</p>
+
 Wrap any `AsyncSequence<String>`, choose a style:
 
 ```swift
@@ -61,6 +69,8 @@ StreamText.typing(
 
 ## Quick start — `IntelligenceGlow`
 
+<p align="center"><img src="Assets/intelligenceglow.gif" alt="IntelligenceGlow — animated gradient border around a chat card" width="350"></p>
+
 A modifier that paints an animated gradient border around any surface:
 
 ```swift
@@ -76,6 +86,8 @@ ChatBubble()
 When wired to an `AIState`, the glow breathes only while the phase is active (listening / thinking / streaming).
 
 ## Quick start — `ThinkingIndicator`
+
+<p align="center"><img src="Assets/thinking-indicator.gif" alt="ThinkingIndicator — three-dot pulse while phase is .thinking" width="120"></p>
 
 ```swift
 VStack {
