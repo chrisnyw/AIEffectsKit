@@ -1,10 +1,15 @@
 # AIEffectsKit
 
+[![SwiftVersion](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fchrisnyw%2FAIEffectsKit%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/chrisnyw/AIEffectsKit)
+[![Platform](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fchrisnyw%2FAIEffectsKit%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/chrisnyw/AIEffectsKit)
+![SPM](https://img.shields.io/badge/SPM-compatible-green.svg)
+[![License: MIT](https://img.shields.io/github/license/chrisnyw/AIEffectsKit?label=License)](https://github.com/chrisnyw/AIEffectsKit/blob/main/LICENSE)
+
 **The visual language of generative AI for SwiftUI** — state-driven, accessibility-correct, ready for Metal acceleration.
 
 <p align="center"><img src="Assets/intergrated-orb.gif" alt="Integrated hero — demonstrate orb indicator" width="250"> <img src="Assets/intergrated-chip.gif" alt="Integrated hero — demonstrate status chip indicator" width="250"></p>
 
-> Ships `StreamText`, `ThinkingIndicator`, `IntelligenceGlow`, and a shared `AIState` that ties them together. `StreamText` offers **ten** reveal styles, powered by the iOS 18 `TextRenderer` API with iOS 17 fallbacks. Every effect auto-degrades under Reduce Motion / Reduce Transparency / Low Power Mode.
+> Ships `StreamText`, `ThinkingIndicator`, `IntelligenceGlow`, and a shared `AIState` that ties them together. `StreamText` offers **eleven** reveal styles, powered by the iOS 18 `TextRenderer` API with iOS 17 fallbacks. Every effect auto-degrades under Reduce Motion / Reduce Transparency / Low Power Mode.
 
 ## Why
 
@@ -28,18 +33,20 @@ import AIEffectsKit
 
 | Component | Description |
 |---|---|
-| `StreamText` | Token-by-token reveal driven by any `AsyncSequence<String>`. Ten styles — `.trailingShimmer`, `.typewriter`, `.wordReveal`, `.tokenChunks`, `.fadeRise`, `.blurFocus`, `.shimmerWipe`, `.skeleton`, `.scramble`, `.letterDrop`, `.lineCascade`. |
+| `StreamText` | Token-by-token reveal driven by any `AsyncSequence<String>`. Eleven styles — `.trailingShimmer`, `.typewriter`, `.wordReveal`, `.tokenChunks`, `.fadeRise`, `.blurFocus`, `.shimmerWipe`, `.skeleton`, `.scramble`, `.letterDrop`, `.lineCascade`. |
 | `ThinkingIndicator` | Compact three-dot pulse that renders only while `AIState.phase == .thinking`. |
 | `.intelligenceGlow(…)` | View modifier — animated rotating gradient border. Activates from a shared `AIState` or an explicit `activeWhen:` flag. |
 | `AIState` / `AIPhase` | Shared observable state: `.idle` · `.listening` · `.thinking` · `.streaming` · `.done` · `.error(String)`. Injected via `.aiState(_:)`. |
 
-## Quick start — `StreamText`
+## Output samples
 
-<p align="center">
-  <img src="Assets/streamtext-typewriter.gif" alt="StreamText — typewriter style" width="180">
-  <img src="Assets/streamtext-shimmer-wipe.gif" alt="StreamText — shimmer wipe style" width="180">
-  <img src="Assets/streamtext-fade-rise.gif" alt="StreamText — fade + rise style" width="180">
-</p>
+| Component | Preview |
+|---|---|
+| `StreamText` | <img src="Assets/streamtext-demo.gif" alt="Integrated hero — demonstrate status chip indicator" width="250"></p> |
+| `IntelligenceGlow` | <img src="Assets/intelligenceglow-demo.gif" alt="Integrated hero — demonstrate status chip indicator" width="250"></p> |
+| `ThinkingIndicator` | <img src="Assets/thinking-indicator-demo.gif" alt="Integrated hero — demonstrate status chip indicator" width="250"></p> |
+
+## Quick start — `StreamText`
 
 Wrap any `AsyncSequence<String>`, choose a style:
 
@@ -48,7 +55,7 @@ StreamText(llmTokenStream, style: .trailingShimmer())
     .font(.title3)
 ```
 
-Pick any of the ten styles:
+Pick any of the eleven styles:
 
 ```swift
 StreamText(source, style: .typewriter())
@@ -69,8 +76,6 @@ StreamText.typing(
 
 ## Quick start — `IntelligenceGlow`
 
-<p align="center"><img src="Assets/intelligenceglow.gif" alt="IntelligenceGlow — animated gradient border around a chat card" width="350"></p>
-
 A modifier that paints an animated gradient border around any surface:
 
 ```swift
@@ -86,8 +91,6 @@ ChatBubble()
 When wired to an `AIState`, the glow breathes only while the phase is active (listening / thinking / streaming).
 
 ## Quick start — `ThinkingIndicator`
-
-<p align="center"><img src="Assets/thinking-indicator.gif" alt="ThinkingIndicator — three-dot pulse while phase is .thinking" width="120"></p>
 
 ```swift
 VStack {
@@ -139,8 +142,8 @@ The demo ships four screens grouped as **Components** (each effect on its own) +
 | Release | Scope | Status |
 |---|---|---|
 | **v0.1.0** | `StreamText` solo (iOS 18 `TextRenderer`, one style) | ✅ shipped |
-| **v0.2.0** | `ThinkingIndicator`, pure-SwiftUI `IntelligenceGlow`, `AIState` wiring, `StreamText` expanded to 10 styles, accessibility infra, demo feature-folder architecture | 🚧 in progress |
-| v1.0.0 | Metal `layerEffect` `IntelligenceGlow`, `AIRipple`, `GenerationPlaceholder`, hero demo app, FoundationModelsKit integration | planned |
+| **v0.2.0** | `ThinkingIndicator`, pure-SwiftUI `IntelligenceGlow`, `AIState` wiring, `StreamText` expanded to 11 styles, accessibility infra, demo feature-folder architecture | ✅ shipped |
+| v1.0.0 | Metal `layerEffect`, `AIRipple`, `GenerationPlaceholder`, hero demo app, FoundationModelsKit integration | planned |
 
 See [`AIEffectsKit-PLAN.md`](AIEffectsKit-PLAN.md) for positioning, market research, and kill-switches.
 
