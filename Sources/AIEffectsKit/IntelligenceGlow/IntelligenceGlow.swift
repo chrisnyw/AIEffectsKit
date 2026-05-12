@@ -98,3 +98,50 @@ struct IntelligenceGlowModifier: ViewModifier {
             || ProcessInfo.processInfo.isLowPowerModeEnabled
     }
 }
+
+#Preview("IntelligenceGlowDemo") {
+    VStack {
+        PreviewTextDemo(text: "Inactive")
+            .intelligenceGlow(
+                colors: [.blue, .purple, .pink, .blue],
+                lineWidth: 2,
+                cornerRadius: 10,
+                activeWhen: false
+            )
+            .cornerRadius(10)
+        
+        PreviewTextDemo(text: "Active")
+            .intelligenceGlow(
+                colors: [.blue, .purple, .pink, .blue],
+                lineWidth: 2,
+                cornerRadius: 10,
+                activeWhen: true
+            )
+        
+        PreviewTextDemo(text: "Active with default lineWidth and radius")
+            .intelligenceGlow(
+                colors: [.orange, .pink, .red, .orange],
+                activeWhen: true
+            )
+        
+        PreviewTextDemo(text: "Active with mono color")
+            .intelligenceGlow(
+                colors: [.primary.opacity(0.2), .primary, .primary.opacity(0.2), .primary],
+                activeWhen: true
+            )
+    }
+    .padding()
+}
+
+private struct PreviewTextDemo: View {
+    let text: String
+    
+    var body: some View {
+        Text(text)
+            .font(.headline)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.horizontal, 18)
+            .padding(.vertical, 16)
+            .background(Color(uiColor: .secondarySystemBackground))
+    }
+}
